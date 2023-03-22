@@ -5,6 +5,8 @@ deploy_versions
 .temp
 .rn_temp
 .swc
+.pnp
+.pnp.js
 
 # Logs
 logs
@@ -14,6 +16,13 @@ pnpm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
+
+# env
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
 # OS
 .DS_Store

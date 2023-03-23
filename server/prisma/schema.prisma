@@ -10,35 +10,78 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// user (用户信息表)
+// 用户信息表
 model User {
-  id       Int      @id @default(autoincrement())
-  username String   @unique
-  password String
-  phone    String
-  address  String
+  id          Int      @id @default(autoincrement())
+  username    String
+  password    String
+  phone       String
+  gender      String
+  birthday    String
+  address     String
 }
 
-// menu (菜单表)
-model Menu {
-  id Int @id
+// 商家表
+model Merchant {
+  id          Int      @id @default(autoincrement())
+  name        String
+  address     String
+  phone       String
+  image       String
 }
 
-// order (订单表)
-model order {}
+// 菜品表
+model Dish {
+  id          Int      @id @default(autoincrement())
+  name        String
+  price       Float
+  image       String
+  description String?
+}
 
-// cart (购物车表)
-model cart {}
+// 购物车表
+model Cart {
+  id          Int      @id @default(autoincrement())
+  userId      Int
+  dishId      Int
+  quantity    Int
+}
 
-// shop (店铺信息表)
-model shop {}
+// 订单表
+model Order {
+  id          Int      @id @default(autoincrement())
+  userId      Int
+  merchantId  Int
+  status      String
+  orderTime   DateTime
+  deliveryTime DateTime?
+  totalPrice  Float
+}
 
-// payment (支付信息表)
-model payment {}
+// 订单详情表
+model OrderDetail {
+  id          Int      @id @default(autoincrement())
+  orderId     Int
+  dishId      Int
+  quantity    Int
+  price       Float
+}
 
-// comment (评价信息表)
-model comment {}
+// 支付表
+model Payment {
+  id          Int      @id @default(autoincrement())
+  orderId     Int
+  method      String
+  payTime     DateTime
+  amount      Float
+}
 
-
-
-
+// 评价表
+model Review {
+  id          Int      @id @default(autoincrement())
+  userId      Int
+  merchantId  Int
+  orderId     Int
+  content     String
+  stars       Int
+}

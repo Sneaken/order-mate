@@ -19,7 +19,19 @@ model User {
   birthday    String
   createdAt   DateTime @default(now()) @map("created_at")
   updatedAt   DateTime @updatedAt @map("updated_at")
+  thirdPartyAuth ThirdPartyAuth[]
   @@map("user")
+}
+
+// 第三方登陆表
+model ThirdPartyAuth {
+  id               Int      @id @default(autoincrement())
+  userId           Int      @map("user_id")
+  provider         String
+  providerUserId   String   @map("provider_user_id")
+  createdAt        DateTime @default(now()) @map("created_at")
+  user             User     @relation(fields: [userId], references: [id])
+  @@map("third_party_auth")
 }
 
 // 商家表
